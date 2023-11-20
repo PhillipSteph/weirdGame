@@ -10,17 +10,17 @@ var arr = [
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
           ]
 var colorarr = [
-            "blue","black","blue","black","black","black","black", 
+            "blue","blue","blue","blue","blue","blue","blue", 
             "black","black","black","black","black","black","black", 
             "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","green","black", 
-            "black","black","black","black","green","green","green", 
-            "black","black","black","black","black","brown","black", 
-            "black","black","black","black","black","brown","black",       
+            "black","black","black","brown","brown","brown","brown", 
+            "black","brown","black","brown","black","black","black", 
+            "black","brown","black","black","black","brown","black", 
+            "black","brown","brown","brown","brown","brown","black",       
 ]
 var i = 0;   
 var gridsize=Math.sqrt(arr.length)
-var position=((gridsize*gridsize)-1)/2
+var position=0
 var tempcol="black"
 checkerboard()
 arr[position].style.backgroundColor="red"
@@ -34,11 +34,10 @@ i++
   }
 }
 function goup(){
-  if(direction===83){return;}
-  direction=87
   if(position<gridsize){
     return;
   }
+  if(colorarr[position-gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
 
@@ -46,31 +45,30 @@ function goup(){
   arr[position].style.backgroundColor="red"
 }
 function godown(){
-  if(direction===87){return;}
-  direction=83
   if((gridsize*gridsize-gridsize)<=position){
     return;
   }
+  if(colorarr[position+gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
   tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function goleft(){
-  direction=65
   if(position%gridsize==0){
     return;
   }
+  if(colorarr[position-1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
   tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function goright(){
-  direction=68
   if(position%gridsize==gridsize-1){
     return;
   }
+  if(colorarr[position+1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
   tempcol=colorarr[position]
