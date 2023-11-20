@@ -10,28 +10,26 @@ var arr = [
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
           ]
 var colorarr = [
+            "blue","black","blue","black","black","black","black", 
             "black","black","black","black","black","black","black", 
             "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","black","black", 
-            "black","black","black","black","black","black","black",       
+            "black","black","black","black","black","green","black", 
+            "black","black","black","black","green","green","green", 
+            "black","black","black","black","black","brown","black", 
+            "black","black","black","black","black","brown","black",       
 ]
 var i = 0;   
 var gridsize=Math.sqrt(arr.length)
 var position=((gridsize*gridsize)-1)/2
-
+var tempcol="black"
+checkerboard()
 arr[position].style.backgroundColor="red"
 var direction=68
 
-function sleep(ms) {     return new Promise(resolve => setTimeout(resolve, ms)); }
-
 function checkerboard(){
   i=0
-  console.log("hier bin ich")
   while(i<gridsize*gridsize){
-arr[i].style.backgroundColor="blue"
+arr[i].style.backgroundColor=colorarr[i]
 i++
   }
 }
@@ -41,8 +39,10 @@ function goup(){
   if(position<gridsize){
     return;
   }
-  arr[position].style.backgroundColor="black"
+  arr[position].style.backgroundColor=tempcol
   position=position-gridsize
+
+  tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function godown(){
@@ -51,8 +51,9 @@ function godown(){
   if((gridsize*gridsize-gridsize)<=position){
     return;
   }
-  arr[position].style.backgroundColor="black" //83
+  arr[position].style.backgroundColor=tempcol
   position=position+gridsize
+  tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function goleft(){
@@ -60,8 +61,9 @@ function goleft(){
   if(position%gridsize==0){
     return;
   }
-  arr[position].style.backgroundColor="black" //65
+  arr[position].style.backgroundColor=tempcol
   position=position-1
+  tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function goright(){
@@ -69,8 +71,9 @@ function goright(){
   if(position%gridsize==gridsize-1){
     return;
   }
-  arr[position].style.backgroundColor="black" //68
+  arr[position].style.backgroundColor=tempcol
   position=position+1
+  tempcol=colorarr[position]
   arr[position].style.backgroundColor="red"
 }
 function move(){
