@@ -1,0 +1,28 @@
+body {
+    background-color: #eeeeee;
+}
+
+#map div {
+    height:50px;
+    width:50px;
+    margin:2px;
+    background-color:black;
+}
+#map {
+    float: left;
+}
+#buttons{
+    margin:5px;
+    height:165px;
+    width:165px;
+    background-color:grey;
+    float:left;
+}
+#buttons button {
+    height:50px;
+    width:50px;
+}
+table {
+    height:100%;
+    width:100%;
+}
