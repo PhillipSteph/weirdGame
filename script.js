@@ -11,7 +11,7 @@ var arr = [
           ]
 var colorarr = [
             "blue","blue","blue","blue","blue","blue","blue", 
-            "black","black","black","black","black","black","black", 
+            "black","blue","black","black","black","black","black", 
             "black","black","black","black","black","black","black", 
             "black","black","black","brown","brown","brown","brown", 
             "black","brown","black","brown","black","black","black", 
