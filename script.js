@@ -26,11 +26,11 @@ var tempmap = [], temp2map = [], temp3map = []
 var i = 0;   
 var gridsize=Math.sqrt(arr.length)
 var position=0
-var tempcol="black"
+var tempcol=colorarr[position][0]
 drawcolarr()
 arr[position].style.backgroundColor="red"
 var direction=68
-
+mapgenerator()
 function mapgenerator(){
   if(colorarr.length===4){
     return;
@@ -91,6 +91,8 @@ function goup(){
     worldposition=worldposition-2
     drawcolarr()
     position=position+(gridsize*gridsize)-gridsize
+    tempcol=colorarr[worldposition][position]
+  arr[position].style.backgroundColor="red"
   }
   if(colorarr[worldposition][position-gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
@@ -106,7 +108,9 @@ function godown(){
   else if((gridsize*gridsize-gridsize)<=position){
     worldposition=worldposition+2
     drawcolarr()
-    position=position-((gridsize*gridsize)-gridsize)
+    position=position%7
+    tempcol=colorarr[worldposition][position]
+  arr[position].style.backgroundColor="red"
   }
   if(colorarr[worldposition][position+gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
@@ -115,8 +119,15 @@ function godown(){
   arr[position].style.backgroundColor="red"
 }
 function goleft(){
-  if(position%gridsize==0 && worldposition==0){
+  if(position%gridsize==0 && worldposition%2==0){
     return;
+  }
+  else if(position%gridsize==0){
+    worldposition=worldposition-1
+    drawcolarr()
+    position=position+gridsize
+    tempcol=colorarr[worldposition][position]
+  arr[position].style.backgroundColor="red"
   }
   if(colorarr[worldposition][position-1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
@@ -125,8 +136,15 @@ function goleft(){
   arr[position].style.backgroundColor="red"
 }
 function goright(){
-  if(position%gridsize==gridsize-1){
+  if(position%gridsize==gridsize-1 && worldposition%2==1){
     return;
+  }
+  else if(position%gridsize==gridsize-1){
+    worldposition=worldposition+1
+    drawcolarr()
+    position=position-gridsize
+    tempcol=colorarr[worldposition][position]
+  arr[position].style.backgroundColor="red"
   }
   if(colorarr[worldposition][position+1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
