@@ -1,3 +1,4 @@
+var map = document.getElementById("map")
 var arr = [
             document.getElementById("0"),document.getElementById("1"),document.getElementById("2"),document.getElementById("3"),document.getElementById("4"),document.getElementById("5"), document.getElementById("6"),
             document.getElementById("7"),document.getElementById("8"),document.getElementById("9"),document.getElementById("10"),document.getElementById("11"),document.getElementById("12"), document.getElementById("13"),
@@ -16,6 +17,7 @@ var colorarr = [[
             "black","brown","black","black","black","brown","black", 
             "black","brown","brown","brown","brown","brown","black",       
 ]]
+var blockcolor ="violet"
 var worldposition=0; 
 var tempmap = [], temp2map = [], temp3map = []
 var i = 0;
@@ -26,7 +28,63 @@ var tempcol=colorarr[position][worldposition]
 mapgenerator()
 drawcolarr()
 posred()
+function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
+  switch(type){
+    case 1: genmap1on(map,col1,col2) ; break;
+    case 2: genmap2on(map) ; break;
+    case 3: genmap3on(map,col1,col2) ; break;
+  }
+  if(worldposition==map){
+    drawcolarr()
+    posred()
+  }
+}
 
+function genmap1on(map,col1,col2){
+  tempmap = []
+  colorarr[map] = []
+  i=0;
+  while(i<gridsize*gridsize){
+    if(i%2==0){
+      tempmap.push(col1)
+    }else{tempmap.push(col2)}
+    i++
+  }colorarr[map]=tempmap
+}
+function genmap2on(map){
+  tempmap = []
+  colorarr[map] = []
+  i=0;
+  while(i<gridsize*gridsize){
+if(i<5){
+ var hex = "#0"+i*2+"0"+i*2+"0"+2*i
+ tempmap.push(hex)
+}else{
+ var hex = "#"+i*2+i*2+i*2
+ tempmap.push(hex)
+}
+i++
+  }colorarr[map]=tempmap
+}
+function genmap3on(map,col1,col2){
+  var x = (Math.random()*10).toFixed(0)
+  tempmap = []
+  colorarr[map] = []
+  i=0;
+  while(i<gridsize*gridsize){
+    x = (Math.random()*1.7).toFixed(0)
+    while(x>0){
+      tempmap.push(col1)
+      i++
+      x--
+    }
+      tempmap.push(col2)
+      i++
+      tempmap.push(col2)
+      i++
+    }
+
+  colorarr[map]=tempmap}
 function mapgenerator(){
   if(colorarr.length===4){
     return;
@@ -41,25 +99,25 @@ x = Math.random();y = Math.random();z = Math.random()
 if(x<0.33){
   tempmap.push("black")
 }else if(x<0.50){
-  tempmap.push("brown")
+  tempmap.push("violet")
 }else{
-  tempmap.push("green")
+  tempmap.push("#1F1F1F")
 }
 
 if(y<0.33){
   temp2map.push("black")
 }else if(y<0.50){
-  temp2map.push("brown")
+  temp2map.push("violet")
 }else{
-  temp2map.push("green")
+  temp2map.push("#0F0F0F")
 }
 
 if(z<0.33){
   temp3map.push("black")
 }else if(z<0.50){
-  temp3map.push("brown")
+  temp3map.push("violet")
 }else{
-  temp3map.push("green")
+  temp3map.push("#0F0F0F")
 }
 
 i++
@@ -67,6 +125,9 @@ i++
 colorarr.push(tempmap);console.log(tempmap)
 colorarr.push(temp2map);console.log(temp2map)
 colorarr.push(temp3map);console.log(temp3map)
+tempmap = []
+temp2map = []
+temp3map = []
 }
 function posred(){
   tempcol=colorarr[worldposition][position]
@@ -85,14 +146,14 @@ function goup(){
   }
 
   else if(position<gridsize){
-    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]=="brown"){return;}
+    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]==blockcolor){return;}
     worldposition=worldposition-2
     position=position+(gridsize*gridsize)-gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position-gridsize]=="brown"){return;}
+  if(colorarr[worldposition][position-gridsize]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
 
@@ -103,14 +164,14 @@ function godown(){
     return;
   }
   else if((gridsize*gridsize-gridsize)<=position){
-    if(colorarr[worldposition+2][position%7]=="brown"){return;}
+    if(colorarr[worldposition+2][position%7]==blockcolor){return;}
     worldposition=worldposition+2
     position=position%7
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position+gridsize]=="brown"){return;}
+  if(colorarr[worldposition][position+gridsize]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
   posred()
@@ -120,14 +181,14 @@ function goleft(){
     return;
   }
   else if(position%gridsize==0){
-    if(colorarr[worldposition-1][position-1+gridsize]=="brown"){return;}
+    if(colorarr[worldposition-1][position-1+gridsize]==blockcolor){return;}
     worldposition=worldposition-1
     position=position-1+gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position-1]=="brown"){return;}
+  if(colorarr[worldposition][position-1]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
   posred()
@@ -137,14 +198,14 @@ function goright(){
     return;
   }
   else if(position%gridsize==gridsize-1){
-    if(colorarr[worldposition+1][position+1-gridsize]=="brown"){return;}
+    if(colorarr[worldposition+1][position+1-gridsize]==blockcolor){return;}
     worldposition=worldposition+1
     position=position+1-gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position+1]=="brown"){return;}
+  if(colorarr[worldposition][position+1]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
   posred()
@@ -175,6 +236,15 @@ window.onkeydown = function(event){
   }
   if(event.keyCode === 81){
     mapgenerator()
+  }
+  if(event.keyCode === 49){
+    custommapgenerator(worldposition,1,"black","green")
+  }
+  if(event.keyCode === 50){
+    custommapgenerator(worldposition,2,"black","grey")
+  }
+  if(event.keyCode === 51){
+    custommapgenerator(worldposition,3,"violet","black")
   }
 }
 /* function myLoop() {
