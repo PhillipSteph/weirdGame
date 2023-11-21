@@ -9,7 +9,7 @@ var arr = [
             document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
           ]
-var colorarr = [
+var colorarr = [[
             "blue","blue","blue","blue","blue","blue","blue", 
             "black","blue","black","black","black","black","black", 
             "black","black","black","black","black","black","black", 
@@ -17,61 +17,121 @@ var colorarr = [
             "black","brown","black","brown","black","black","black", 
             "black","brown","black","black","black","brown","black", 
             "black","brown","brown","brown","brown","brown","black",       
-]
+]]
+
+var worldposition=0; 
+
+var tempmap = [], temp2map = [], temp3map = []
+
 var i = 0;   
 var gridsize=Math.sqrt(arr.length)
 var position=0
 var tempcol="black"
-checkerboard()
+drawcolarr()
 arr[position].style.backgroundColor="red"
 var direction=68
 
-function checkerboard(){
+function mapgenerator(){
+  if(colorarr.length===4){
+    return;
+  }
+
+  i=0;x=0;y=0;z=0
+
+while(i<gridsize*gridsize){
+
+x = Math.random();y = Math.random();z = Math.random()
+
+if(x<0.33){
+  tempmap.push("black")
+}else if(x<0.50){
+  tempmap.push("brown")
+}else{
+  tempmap.push("green")
+}
+
+if(y<0.33){
+  temp2map.push("black")
+}else if(y<0.50){
+  temp2map.push("brown")
+}else{
+  temp2map.push("green")
+}
+
+if(z<0.33){
+  temp3map.push("black")
+}else if(z<0.50){
+  temp3map.push("brown")
+}else{
+  temp3map.push("green")
+}
+
+i++
+  }
+colorarr.push(tempmap)
+console.log(tempmap)
+colorarr.push(temp2map)
+console.log(temp2map)
+colorarr.push(temp3map)
+console.log(temp3map)
+}
+
+function drawcolarr(){
   i=0
   while(i<gridsize*gridsize){
-arr[i].style.backgroundColor=colorarr[i]
+arr[i].style.backgroundColor=colorarr[worldposition][i]
 i++
   }
 }
 function goup(){
-  if(position<gridsize){
+  if(position<gridsize && worldposition<=1){
     return;
   }
-  if(colorarr[position-gridsize]=="brown"){return;}
+  else if(position<gridsize){
+    worldposition=worldposition-2
+    drawcolarr()
+    position=position+(gridsize*gridsize)-gridsize
+  }
+  if(colorarr[worldposition][position-gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
 
-  tempcol=colorarr[position]
+  tempcol=colorarr[worldposition][position]
   arr[position].style.backgroundColor="red"
 }
 function godown(){
-  if((gridsize*gridsize-gridsize)<=position){
+  if((gridsize*gridsize-gridsize)<=position && worldposition>=2){
     return;
   }
-  if(colorarr[position+gridsize]=="brown"){return;}
+  else if((gridsize*gridsize-gridsize)<=position){
+    worldposition=worldposition+2
+    drawcolarr()
+    position=position-((gridsize*gridsize)-gridsize)
+  }
+  if(colorarr[worldposition][position+gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
-  tempcol=colorarr[position]
+  tempcol=colorarr[worldposition][position]
   arr[position].style.backgroundColor="red"
 }
 function goleft(){
-  if(position%gridsize==0){
+  if(position%gridsize==0 && worldposition==0){
     return;
   }
-  if(colorarr[position-1]=="brown"){return;}
+  if(colorarr[worldposition][position-1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
-  tempcol=colorarr[position]
+  tempcol=colorarr[worldposition][position]
   arr[position].style.backgroundColor="red"
 }
 function goright(){
   if(position%gridsize==gridsize-1){
     return;
   }
-  if(colorarr[position+1]=="brown"){return;}
+  if(colorarr[worldposition][position+1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
-  tempcol=colorarr[position]
+  tempcol=colorarr[worldposition][position]
   arr[position].style.backgroundColor="red"
 }
 function move(){
@@ -99,8 +159,7 @@ window.onkeydown = function(event){
   move()
   }
   if(event.keyCode === 81){
-    console.log(event.keyCode)
-    checkerboard()
+    mapgenerator()
   }
 }
 /* function myLoop() {
