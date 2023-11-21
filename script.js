@@ -1,5 +1,3 @@
-var Map =   document.getElementById("map")
-
 var arr = [
             document.getElementById("0"),document.getElementById("1"),document.getElementById("2"),document.getElementById("3"),document.getElementById("4"),document.getElementById("5"), document.getElementById("6"),
             document.getElementById("7"),document.getElementById("8"),document.getElementById("9"),document.getElementById("10"),document.getElementById("11"),document.getElementById("12"), document.getElementById("13"),
@@ -18,19 +16,17 @@ var colorarr = [[
             "black","brown","black","black","black","brown","black", 
             "black","brown","brown","brown","brown","brown","black",       
 ]]
-
 var worldposition=0; 
-
 var tempmap = [], temp2map = [], temp3map = []
-
-var i = 0;   
+var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var position=0
-var tempcol=colorarr[position][0]
-drawcolarr()
-arr[position].style.backgroundColor="red"
-var direction=68
+var tempcol=colorarr[position][worldposition]
+
 mapgenerator()
+drawcolarr()
+posred()
+
 function mapgenerator(){
   if(colorarr.length===4){
     return;
@@ -68,89 +64,90 @@ if(z<0.33){
 
 i++
   }
-colorarr.push(tempmap)
-console.log(tempmap)
-colorarr.push(temp2map)
-console.log(temp2map)
-colorarr.push(temp3map)
-console.log(temp3map)
+colorarr.push(tempmap);console.log(tempmap)
+colorarr.push(temp2map);console.log(temp2map)
+colorarr.push(temp3map);console.log(temp3map)
 }
-
+function posred(){
+  tempcol=colorarr[worldposition][position]
+  arr[position].style.backgroundColor="red"
+}
 function drawcolarr(){
   i=0
   while(i<gridsize*gridsize){
-arr[i].style.backgroundColor=colorarr[worldposition][i]
-i++
+    arr[i].style.backgroundColor=colorarr[worldposition][i]
+    i++
   }
 }
 function goup(){
   if(position<gridsize && worldposition<=1){
     return;
   }
+
   else if(position<gridsize){
+    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]=="brown"){return;}
     worldposition=worldposition-2
-    drawcolarr()
     position=position+(gridsize*gridsize)-gridsize
-    tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+    drawcolarr()
+    posred()
+    return;
   }
   if(colorarr[worldposition][position-gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
 
-  tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+  posred()
 }
 function godown(){
   if((gridsize*gridsize-gridsize)<=position && worldposition>=2){
     return;
   }
   else if((gridsize*gridsize-gridsize)<=position){
+    if(colorarr[worldposition+2][position%7]=="brown"){return;}
     worldposition=worldposition+2
-    drawcolarr()
     position=position%7
-    tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+    drawcolarr()
+    posred()
+    return;
   }
   if(colorarr[worldposition][position+gridsize]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
-  tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+  posred()
 }
 function goleft(){
   if(position%gridsize==0 && worldposition%2==0){
     return;
   }
   else if(position%gridsize==0){
+    if(colorarr[worldposition-1][position-1+gridsize]=="brown"){return;}
     worldposition=worldposition-1
+    position=position-1+gridsize
     drawcolarr()
-    position=position+gridsize
-    tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+    posred()
+    return;
   }
   if(colorarr[worldposition][position-1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
-  tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+  posred()
 }
 function goright(){
   if(position%gridsize==gridsize-1 && worldposition%2==1){
     return;
   }
   else if(position%gridsize==gridsize-1){
+    if(colorarr[worldposition+1][position+1-gridsize]=="brown"){return;}
     worldposition=worldposition+1
+    position=position+1-gridsize
     drawcolarr()
-    position=position-gridsize
-    tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+    posred()
+    return;
   }
   if(colorarr[worldposition][position+1]=="brown"){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
-  tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+  posred()
 }
 function move(){
 if(direction===87){
