@@ -7,16 +7,13 @@ var arr = [
             document.getElementById("28"),document.getElementById("29"),document.getElementById("30"),document.getElementById("31"),document.getElementById("32"), document.getElementById("33"), document.getElementById("34"),        
             document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
-          ]
-var colorarr = [[
-            "blue","blue","blue","blue","blue","blue","blue", 
-            "black","blue","black","black","black","black","black", 
-            "black","black","black","black","black","black","black", 
-            "black","black","black","brown","brown","brown","brown", 
-            "black","brown","black","brown","black","black","black", 
-            "black","brown","black","black","black","brown","black", 
-            "black","brown","brown","brown","brown","brown","black",       
-]]
+]
+var mm0 = document.getElementById("mm0")
+var mm1 = document.getElementById("mm1")
+var mm2 = document.getElementById("mm2")
+var mm3 = document.getElementById("mm3")
+
+var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
 var tempmap = [], temp2map = [], temp3map = []
@@ -28,6 +25,7 @@ var tempcol=colorarr[position][worldposition]
 mapgenerator()
 drawcolarr()
 posred()
+checkworldposition()
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
     case 1: genmap1on(map,col1,col2) ; break;
@@ -86,48 +84,13 @@ function genmap3on(map,col1,col2){
 
   colorarr[map]=tempmap}
 function mapgenerator(){
-  if(colorarr.length===4){
-    return;
-  }
-
-  i=0;x=0;y=0;z=0
-
-while(i<gridsize*gridsize){
-
-x = Math.random();y = Math.random();z = Math.random()
-
-if(x<0.33){
-  tempmap.push("black")
-}else if(x<0.50){
-  tempmap.push("violet")
-}else{
-  tempmap.push("#1F1F1F")
-}
-
-if(y<0.33){
-  temp2map.push("black")
-}else if(y<0.50){
-  temp2map.push("violet")
-}else{
-  temp2map.push("#0F0F0F")
-}
-
-if(z<0.33){
-  temp3map.push("black")
-}else if(z<0.50){
-  temp3map.push("violet")
-}else{
-  temp3map.push("#0F0F0F")
-}
-
-i++
-  }
-colorarr.push(tempmap);console.log(tempmap)
-colorarr.push(temp2map);console.log(temp2map)
-colorarr.push(temp3map);console.log(temp3map)
-tempmap = []
-temp2map = []
-temp3map = []
+  colorarr.push([])
+  colorarr.push([])
+  colorarr.push([])
+genmap3on(0,"violet","black")
+genmap3on(1,"violet","black")
+genmap3on(2,"violet","black")
+genmap3on(3,"violet","black")
 }
 function posred(){
   tempcol=colorarr[worldposition][position]
@@ -229,6 +192,18 @@ if(direction===68){
 }
 
 }
+function checkworldposition(){
+mm0.style.backgroundColor="grey"
+mm1.style.backgroundColor="grey"
+mm2.style.backgroundColor="grey"
+mm3.style.backgroundColor="grey"
+  switch(worldposition){
+    case 0: mm0.style.backgroundColor="#AA0000";break;
+    case 1: mm1.style.backgroundColor="#AA0000";break;
+    case 2: mm2.style.backgroundColor="#AA0000";break;
+    case 3: mm3.style.backgroundColor="#AA0000";break;
+  }
+}
 window.onkeydown = function(event){
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
   direction=event.keyCode
@@ -246,6 +221,7 @@ window.onkeydown = function(event){
   if(event.keyCode === 51){
     custommapgenerator(worldposition,3,"violet","black")
   }
+  checkworldposition()
 }
 /* function myLoop() {
   setTimeout(function() { 
