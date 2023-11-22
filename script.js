@@ -1,4 +1,5 @@
 var map = document.getElementById("map")
+var minimaptable = document.getElementById("minimaptable")
 var arr = [
             document.getElementById("0"),document.getElementById("1"),document.getElementById("2"),document.getElementById("3"),document.getElementById("4"),document.getElementById("5"), document.getElementById("6"),
             document.getElementById("7"),document.getElementById("8"),document.getElementById("9"),document.getElementById("10"),document.getElementById("11"),document.getElementById("12"), document.getElementById("13"),
@@ -8,18 +9,14 @@ var arr = [
             document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
 ]
-var mm0 = document.getElementById("mm0")
-var mm1 = document.getElementById("mm1")
-var mm2 = document.getElementById("mm2")
-var mm3 = document.getElementById("mm3")
-
 var score = document.getElementById("score")
 var msg = document.getElementById("msg")
 score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
-var worldsize=7;
+var worldsize=10;
+createminimaphtml()
 var position=24
 var tempmap = []
 var i = 0;
@@ -31,6 +28,23 @@ drawcolarr()
 posred()
 checkworldposition()
 
+function createminimaphtml(){
+  a=0;
+  j=0;k=0;
+var string=""
+  while(j<worldsize){
+    a+=worldsize
+    string += "<tr>"
+      while(k<a){
+        string+= "<th><div id='mm"+k+"'></div></th>"
+        k++
+      }
+    string+="<tr>"
+j++
+  }
+  console.log(string)
+  minimaptable.innerHTML+=string
+}
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
     case 1: genmap1on(map,col1,col2) ; break;
@@ -215,18 +229,7 @@ if(direction===68){
 }
 }
 function checkworldposition(){
-mm0.style.backgroundColor="grey"
-mm1.style.backgroundColor="grey"
-mm2.style.backgroundColor="grey"
-mm3.style.backgroundColor="grey"
-  switch(worldposition){
-
-    case 0: mm0.style.backgroundColor="#AA0000";break;
-    case 1: mm1.style.backgroundColor="#AA0000";break;
-    case 2: mm2.style.backgroundColor="#AA0000";break;
-    case 3: mm3.style.backgroundColor="#AA0000";break;
-
-  }
+  
 }
 window.onkeydown = function(event){
   

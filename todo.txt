@@ -1,3 +1,2 @@
-Worldmap bigger and adaptable
-
+worldmapindicator
 green disappears after walking on
