@@ -128,7 +128,7 @@ function goup(){
   if(colorarr[worldposition][position-gridsize]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
-
+  calculatescore()
   posred()
 }
 function godown(){
@@ -146,6 +146,7 @@ function godown(){
   if(colorarr[worldposition][position+gridsize]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
+  calculatescore()
   posred()
 }
 function goleft(){
@@ -163,6 +164,7 @@ function goleft(){
   if(colorarr[worldposition][position-1]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
+  calculatescore()
   posred()
 }
 function goright(){
@@ -180,6 +182,7 @@ function goright(){
   if(colorarr[worldposition][position+1]==blockcolor){return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
+  calculatescore()
   posred()
 }
 function move(){
@@ -199,7 +202,6 @@ if(direction===68){
   console.log("going right")
   goright()
 }
-calculatescore()
 }
 function checkworldposition(){
 mm0.style.backgroundColor="grey"
