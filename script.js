@@ -15,13 +15,13 @@ score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
-var worldsize=10;
-createminimaphtml()
+var worldsize=12;
 var position=24
 var tempmap = []
 var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
+createminimaphtml()
 mapgenerator()
 colorarr[worldposition][position]="black"
 drawcolarr()
@@ -36,13 +36,12 @@ var string=""
     a+=worldsize
     string += "<tr>"
       while(k<a){
-        string+= "<th><div id='mm"+k+"'></div></th>"
+        string+= "<th><div class='minimapblock' id='mm"+k+"'></div></th>"
         k++
       }
     string+="<tr>"
 j++
   }
-  console.log(string)
   minimaptable.innerHTML+=string
 }
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
@@ -229,7 +228,18 @@ if(direction===68){
 }
 }
 function checkworldposition(){
-  
+  var minimapblocks = document.getElementsByClassName("minimapblock")
+  for( var l=0; l<minimapblocks.length;l++){
+
+    if(minimapblocks[worldposition].id=="mm"+l){
+
+      for(var m=0;m<minimapblocks.length;m++){minimapblocks[m].style.backgroundColor="grey"}
+      
+
+      minimapblocks[l].style.backgroundColor="red"
+    }
+    
+  }
 }
 window.onkeydown = function(event){
   
