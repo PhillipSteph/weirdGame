@@ -14,6 +14,7 @@ var mm2 = document.getElementById("mm2")
 var mm3 = document.getElementById("mm3")
 
 var score = document.getElementById("score")
+var msg = document.getElementById("msg")
 score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
@@ -120,72 +121,76 @@ function goup(){
   }
 
   else if(position<gridsize){
-    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]==blockcolor){score.innerHTML="versperrt";return;}
+    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition-2
     position=position+(gridsize*gridsize)-gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position-gridsize]==blockcolor){score.innerHTML="versperrt";return;}
+  if(colorarr[worldposition][position-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
   arr[position].style.backgroundColor=tempcol
   position=position-gridsize
   calculatescore()
   posred()
+  msg.innerHTML=""
 }
 function godown(){
   if((gridsize*gridsize-gridsize)<=position && worldposition>=2){
     return;
   }
   else if((gridsize*gridsize-gridsize)<=position){
-    if(colorarr[worldposition+2][position%7]==blockcolor){score.innerHTML="versperrt";return;}
+    if(colorarr[worldposition+2][position%7]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition+2
     position=position%7
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position+gridsize]==blockcolor){score.innerHTML="versperrt";return;}
+  if(colorarr[worldposition][position+gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
   arr[position].style.backgroundColor=tempcol
   position=position+gridsize
   calculatescore()
   posred()
+  msg.innerHTML=""
 }
 function goleft(){
   if(position%gridsize==0 && worldposition%2==0){
     return;
   }
   else if(position%gridsize==0){
-    if(colorarr[worldposition-1][position-1+gridsize]==blockcolor){score.innerHTML="versperrt";return;}
+    if(colorarr[worldposition-1][position-1+gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition-1
     position=position-1+gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position-1]==blockcolor){score.innerHTML="versperrt";return;}
+  if(colorarr[worldposition][position-1]==blockcolor){msg.innerHTML="versperrt";return;}
   arr[position].style.backgroundColor=tempcol
   position=position-1
   calculatescore()
   posred()
+  msg.innerHTML=""
 }
 function goright(){
   if(position%gridsize==gridsize-1 && worldposition%2==1){
     return;
   }
   else if(position%gridsize==gridsize-1){
-    if(colorarr[worldposition+1][position+1-gridsize]==blockcolor){score.innerHTML="versperrt";return;}
+    if(colorarr[worldposition+1][position+1-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition+1
     position=position+1-gridsize
     drawcolarr()
     posred()
     return;
   }
-  if(colorarr[worldposition][position+1]==blockcolor){score.innerHTML="versperrt";return;}
+  if(colorarr[worldposition][position+1]==blockcolor){msg.innerHTML="versperrt";return;}
   arr[position].style.backgroundColor=tempcol
   position=position+1
   calculatescore()
   posred()
+  msg.innerHTML=""
 }
 function move(){
 if(direction===87){

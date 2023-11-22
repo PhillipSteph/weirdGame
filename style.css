@@ -30,16 +30,19 @@ body {
   margin-bottom: 20px;
 }
 
-#text {
+#text, #messagediv {
   height: 50px;
   width: 150px;
   margin: auto;
   float: right;
-  background-color: grey;
   color: black;
+  align-items: center;
 }
 
-#score {
+#score, #msg {
+  font-size: 20px;
+  height: auto;
+  width: auto;
   margin: auto;
   margin-top: 5px;
   text-align: center;
