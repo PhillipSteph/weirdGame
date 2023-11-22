@@ -259,6 +259,13 @@ window.onkeydown = function(event){
     playercolor="blue"
     posred()
   }
+  /*if(event.keyCode === 55){
+    var random1 = (Math.random()*255).toFixed
+    var random2 = (Math.random()*255).toFixed
+    var random3 = (Math.random()*255).toFixed
+    playercolor="rgb("+random1+","+random2+","+random3+")"
+    posred()
+  }*/
   checkworldposition()
 }
 /* function myLoop() {
