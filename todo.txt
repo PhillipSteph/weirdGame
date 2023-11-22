@@ -1,1 +1,3 @@
+Worldmap bigger and adaptable
+
 green disappears after walking on

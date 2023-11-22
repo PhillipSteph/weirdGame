@@ -18,9 +18,10 @@ var msg = document.getElementById("msg")
 score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
-var worldposition=1; 
+var worldposition=0; 
+var worldsize=7;
 var position=24
-var tempmap = [], temp2map = [], temp3map = []
+var tempmap = []
 var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
@@ -96,13 +97,16 @@ function genmap3on(map,col1,col2){
 
   colorarr[map]=tempmap}
 function mapgenerator(){
-  colorarr.push([])
-  colorarr.push([])
-  colorarr.push([])
-genmap3on(0,"violet","black")
-genmap3on(1,"violet","black")
-genmap3on(2,"violet","black")
-genmap3on(3,"violet","black")
+  i=0
+  while(i<worldsize*worldsize-1){
+    colorarr.push([])
+    i++
+  }
+  j=0
+  while(j<worldsize*worldsize){
+    genmap3on(j,"violet","black")
+    j++
+  }
 }
 function posred(){
   tempcol=colorarr[worldposition][position]
@@ -116,13 +120,13 @@ function drawcolarr(){
   }
 }
 function goup(){
-  if(position<gridsize && worldposition<=1){
+  if(position<gridsize && worldposition<=worldsize-1){
     return;
   }
 
   else if(position<gridsize){
-    if(colorarr[worldposition-2][position+(gridsize*gridsize)-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
-    worldposition=worldposition-2
+    if(colorarr[worldposition-worldsize][position+(gridsize*gridsize)-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
+    worldposition=worldposition-worldsize
     position=position+(gridsize*gridsize)-gridsize
     drawcolarr()
     posred()
@@ -136,12 +140,12 @@ function goup(){
   msg.innerHTML=""
 }
 function godown(){
-  if((gridsize*gridsize-gridsize)<=position && worldposition>=2){
+  if((gridsize*gridsize-gridsize)<=position && worldposition>=worldsize*worldsize-worldsize){
     return;
   }
   else if((gridsize*gridsize-gridsize)<=position){
-    if(colorarr[worldposition+2][position%7]==blockcolor){msg.innerHTML="versperrt";return;}
-    worldposition=worldposition+2
+    if(colorarr[worldposition+worldsize][position%7]==blockcolor){msg.innerHTML="versperrt";return;}
+    worldposition=worldposition+worldsize
     position=position%7
     drawcolarr()
     posred()
@@ -155,7 +159,7 @@ function godown(){
   msg.innerHTML=""
 }
 function goleft(){
-  if(position%gridsize==0 && worldposition%2==0){
+  if(position%gridsize==0 && worldposition%worldsize==0){
     return;
   }
   else if(position%gridsize==0){
@@ -174,7 +178,7 @@ function goleft(){
   msg.innerHTML=""
 }
 function goright(){
-  if(position%gridsize==gridsize-1 && worldposition%2==1){
+  if(position%gridsize==gridsize-1 && worldposition%worldsize==worldsize-1){
     return;
   }
   else if(position%gridsize==gridsize-1){
