@@ -25,6 +25,7 @@ var tempmap = []
 var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
+playercolor="blue"
 mapgenerator()
 colorarr[worldposition][position]="black"
 drawcolarr()
@@ -110,7 +111,7 @@ function mapgenerator(){
 }
 function posred(){
   tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor="red"
+  arr[position].style.backgroundColor=playercolor
 }
 function drawcolarr(){
   i=0
@@ -245,6 +246,18 @@ window.onkeydown = function(event){
   }
   if(event.keyCode === 51){
     custommapgenerator(worldposition,3,"violet","black")
+  }
+  if(event.keyCode === 52){
+    playercolor="red"
+    posred()
+  }
+  if(event.keyCode === 53){
+    playercolor="green"
+    posred()
+  }
+  if(event.keyCode === 54){
+    playercolor="blue"
+    posred()
   }
   checkworldposition()
 }
