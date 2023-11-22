@@ -43,8 +43,8 @@ function calculatescore(){
 
   score.innerHTML="Score:0"
   if(colorarr[worldposition][position]=="green"){
-    score.innerHTML="Score:"+scr
     scr++
+    score.innerHTML="Score:"+scr
   }else{
     score.innerHTML="Score:"+scr
   }
@@ -200,7 +200,7 @@ if(direction===68){
   console.log("going right")
   goright()
 }
-
+calculatescore()
 }
 function checkworldposition(){
 mm0.style.backgroundColor="grey"
@@ -235,7 +235,6 @@ window.onkeydown = function(event){
     custommapgenerator(worldposition,3,"violet","black")
   }
   checkworldposition()
-  calculatescore()
 }
 /* function myLoop() {
   setTimeout(function() { 
