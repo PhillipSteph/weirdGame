@@ -13,6 +13,7 @@ var mm1 = document.getElementById("mm1")
 var mm2 = document.getElementById("mm2")
 var mm3 = document.getElementById("mm3")
 
+var score = document.getElementById("score")
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
@@ -21,11 +22,11 @@ var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var position=0
 var tempcol=colorarr[position][worldposition]
-
 mapgenerator()
 drawcolarr()
 posred()
 checkworldposition()
+
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
     case 1: genmap1on(map,col1,col2) ; break;
@@ -37,6 +38,17 @@ function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
     posred()
   }
 }
+var scr=0
+function calculatescore(){
+
+  score.innerHTML="Score:0"
+  if(colorarr[worldposition][position]=="green"){
+    score.innerHTML="Score:"+scr
+    scr++
+  }else{
+    score.innerHTML="Score:"+scr
+  }
+  }
 
 function genmap1on(map,col1,col2){
   tempmap = []
@@ -205,6 +217,7 @@ mm3.style.backgroundColor="grey"
   }
 }
 window.onkeydown = function(event){
+  
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
   direction=event.keyCode
   move()
@@ -222,6 +235,7 @@ window.onkeydown = function(event){
     custommapgenerator(worldposition,3,"violet","black")
   }
   checkworldposition()
+  calculatescore()
 }
 /* function myLoop() {
   setTimeout(function() { 
