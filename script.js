@@ -75,7 +75,6 @@ i++
 }
 
 function genmap3on(map,col1,col2){
-  var x = (Math.random()*10).toFixed(0)
   tempmap = []
   colorarr[map] = []
   i=0;
