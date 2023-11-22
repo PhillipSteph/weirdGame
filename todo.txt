@@ -1,2 +1,4 @@
-worldmapindicator
+
 green disappears after walking on
+
+random color on 7
