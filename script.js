@@ -29,7 +29,7 @@ checkworldposition()
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
     case 1: genmap1on(map,col1,col2) ; break;
-    case 2: genmap2on(map) ; break;
+    case 2: genmap2on(map,col1,col2) ; break;
     case 3: genmap3on(map,col1,col2) ; break;
   }
   if(worldposition==map){
@@ -49,21 +49,19 @@ function genmap1on(map,col1,col2){
     i++
   }colorarr[map]=tempmap
 }
-function genmap2on(map){
+
+function genmap2on(map,col1,col2){
   tempmap = []
   colorarr[map] = []
   i=0;
   while(i<gridsize*gridsize){
-if(i<5){
- var hex = "#0"+i*2+"0"+i*2+"0"+2*i
- tempmap.push(hex)
-}else{
- var hex = "#"+i*2+i*2+i*2
- tempmap.push(hex)
-}
+if(i<gridsize || i>=gridsize*gridsize-gridsize || i%gridsize==0 || i%gridsize==gridsize-1 || i%gridsize==(gridsize-1)/2){
+  tempmap.push(col1)
+} else tempmap.push(col2)
 i++
   }colorarr[map]=tempmap
 }
+
 function genmap3on(map,col1,col2){
   var x = (Math.random()*10).toFixed(0)
   tempmap = []
@@ -198,10 +196,12 @@ mm1.style.backgroundColor="grey"
 mm2.style.backgroundColor="grey"
 mm3.style.backgroundColor="grey"
   switch(worldposition){
+
     case 0: mm0.style.backgroundColor="#AA0000";break;
     case 1: mm1.style.backgroundColor="#AA0000";break;
     case 2: mm2.style.backgroundColor="#AA0000";break;
     case 3: mm3.style.backgroundColor="#AA0000";break;
+
   }
 }
 window.onkeydown = function(event){
@@ -216,7 +216,7 @@ window.onkeydown = function(event){
     custommapgenerator(worldposition,1,"black","green")
   }
   if(event.keyCode === 50){
-    custommapgenerator(worldposition,2,"black","grey")
+    custommapgenerator(worldposition,2,"black","violet")
   }
   if(event.keyCode === 51){
     custommapgenerator(worldposition,3,"violet","black")
