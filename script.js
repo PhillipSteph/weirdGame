@@ -123,13 +123,23 @@ function mapgenerator(){
   }
 }
 function posred(){
+  i=0
+  while(i<gridsize*gridsize){
+  
+    arr[i].style.backgroundImage=""
+    i++
+  }
   tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundColor=playercolor
+  arr[position].style.backgroundImage = "url(obamna.png)"
+  arr[position].style.backgroundSize = "cover"  
+  console.log(tempcol)
 }
 function drawcolarr(){
   i=0
+
   while(i<gridsize*gridsize){
     arr[i].style.backgroundColor=colorarr[worldposition][i]
+    arr[i].style.backgroundImage=""
     i++
   }
 }
