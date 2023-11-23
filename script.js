@@ -62,6 +62,7 @@ function calculatescore(){
   if(colorarr[worldposition][position]=="green"){
     scr++
     colorarr[worldposition][position]="black"
+    drawcolarr()
     arr[position].backgroundImage=""
     score.innerHTML="Score:"+scr
   }else{
@@ -253,11 +254,6 @@ function checkworldposition(){
     
   }
 }
-setInterval(function(){  i=0
-  while(i<gridsize*gridsize){
-    if(arr[i].style.backgroundColor=="green" && i!=position){arr[i].style.backgroundImage="url(soda.png)"}
-    i++
-  }},300)
 window.onkeydown = function(event){
   
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
