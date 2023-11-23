@@ -101,12 +101,15 @@ function genmap3on(map,col1,col2){
     x = (Math.random()*1.7).toFixed(0)
     while(x>0){
       tempmap.push(col1)
+
       i++
       x--
     }
       tempmap.push(col2)
-      i++
-      tempmap.push(col2)
+      y = Math.random()
+      if(y<=0.2){
+        tempmap.push("green")
+      }else{tempmap.push(col2)}
       i++
     }
 
@@ -253,11 +256,6 @@ function checkworldposition(){
     
   }
 }
-setInterval(function(){  i=0
-  while(i<gridsize*gridsize){
-    if(arr[i].style.backgroundColor=="green" && i!=position){arr[i].style.backgroundImage="url(soda.png)"}
-    i++
-  }},300)
 window.onkeydown = function(event){
   
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
@@ -289,8 +287,12 @@ window.onkeydown = function(event){
     posred()
   }
   if(event.keyCode === 55){
+    if(scr>=15){
+      console.log(scr)
     playerskin="url(biden.png)"
     posred()
+    scr-=15
+    }
   }
   
   /*if(event.keyCode === 55){
