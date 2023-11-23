@@ -62,10 +62,12 @@ function calculatescore(){
   if(colorarr[worldposition][position]=="green"){
     scr++
     colorarr[worldposition][position]="black"
+    drawcolarr()
     arr[position].backgroundImage=""
     score.innerHTML="Score:"+scr
   }else{
     score.innerHTML="Score:"+scr
+    drawcolarr()
   }
   }
 
@@ -156,7 +158,7 @@ function goup(){
     if(colorarr[worldposition-worldsize][position+(gridsize*gridsize)-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition-worldsize
     position=position+(gridsize*gridsize)-gridsize
-    drawcolarr()
+    calculatescore()
     posred()
     return;
   }
@@ -175,7 +177,7 @@ function godown(){
     if(colorarr[worldposition+worldsize][position%7]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition+worldsize
     position=position%7
-    drawcolarr()
+    calculatescore()
     posred()
     return;
   }
@@ -194,7 +196,7 @@ function goleft(){
     if(colorarr[worldposition-1][position-1+gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition-1
     position=position-1+gridsize
-    drawcolarr()
+    calculatescore()
     posred()
     return;
   }
@@ -213,7 +215,7 @@ function goright(){
     if(colorarr[worldposition+1][position+1-gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition+1
     position=position+1-gridsize
-    drawcolarr()
+    calculatescore()
     posred()
     return;
   }
