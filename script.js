@@ -21,7 +21,7 @@ var tempmap = []
 var i = 0;
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
-var playercolor="blue"
+var playerskin="url(obamna.png)"
 createminimaphtml()
 mapgenerator()
 colorarr[worldposition][position]="black"
@@ -62,6 +62,7 @@ function calculatescore(){
   if(colorarr[worldposition][position]=="green"){
     scr++
     colorarr[worldposition][position]="black"
+    arr[position].backgroundImage=""
     score.innerHTML="Score:"+scr
   }else{
     score.innerHTML="Score:"+scr
@@ -74,12 +75,12 @@ function genmap1on(map,col1,col2){
   i=0;
   while(i<gridsize*gridsize){
     if(i%2==0){
-      tempmap.push(col1)
+        tempmap.push(col1)
     }else{tempmap.push(col2)}
     i++
   }colorarr[map]=tempmap
+  i=0
 }
-
 function genmap2on(map,col1,col2){
   tempmap = []
   colorarr[map] = []
@@ -125,12 +126,11 @@ function mapgenerator(){
 function posred(){
   i=0
   while(i<gridsize*gridsize){
-  
     arr[i].style.backgroundImage=""
     i++
   }
   tempcol=colorarr[worldposition][position]
-  arr[position].style.backgroundImage = "url(obamna.png)"
+  arr[position].style.backgroundImage = playerskin
   arr[position].style.backgroundSize = "cover"  
   console.log(tempcol)
 }
@@ -139,7 +139,8 @@ function drawcolarr(){
 
   while(i<gridsize*gridsize){
     arr[i].style.backgroundColor=colorarr[worldposition][i]
-    arr[i].style.backgroundImage=""
+    if(arr[i].style.backgroundColor!="green"){
+    arr[i].style.backgroundImage=""}
     i++
   }
 }
@@ -252,6 +253,11 @@ function checkworldposition(){
     
   }
 }
+setInterval(function(){  i=0
+  while(i<gridsize*gridsize){
+    if(arr[i].style.backgroundColor=="green" && i!=position){arr[i].style.backgroundImage="url(soda.png)"}
+    i++
+  }},300)
 window.onkeydown = function(event){
   
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
@@ -271,25 +277,22 @@ window.onkeydown = function(event){
     custommapgenerator(worldposition,3,"violet","black")
   }
   if(event.keyCode === 52){
-    playercolor="red"
+    playerskin="url(obamna.png)"
     posred()
   }
   if(event.keyCode === 53){
-    playercolor="green"
+    playerskin="url(soda.png)"
     posred()
   }
   if(event.keyCode === 54){
-    playercolor="rgb(0,0,255)"
+    playerskin="url(trump.png)"
     posred()
   }
   if(event.keyCode === 55){
-    var x=0;var y=0;var z=0;
-    x = (Math.random()*256).toFixed(0)
-    y = (Math.random()*256).toFixed(0)
-    z = (Math.random()*256).toFixed(0)
-    playercolor="rgb("+x+","+y+","+z+")"
+    playerskin="url(biden.png)"
     posred()
   }
+  
   /*if(event.keyCode === 55){
     var random1 = (Math.random()*255).toFixed
     var random2 = (Math.random()*255).toFixed
