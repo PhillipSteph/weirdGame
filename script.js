@@ -15,7 +15,7 @@ score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
-var worldsize=12;
+var worldsize=9;
 var position=24
 var tempmap = []
 var i = 0;
@@ -28,7 +28,6 @@ colorarr[worldposition][position]="black"
 drawcolarr()
 posred()
 checkworldposition()
-
 function createminimaphtml(){
   a=0;
   j=0;k=0;
@@ -62,6 +61,7 @@ function calculatescore(){
   score.innerHTML="Score:0"
   if(colorarr[worldposition][position]=="green"){
     scr++
+    colorarr[worldposition][position]="black"
     score.innerHTML="Score:"+scr
   }else{
     score.innerHTML="Score:"+scr
@@ -269,7 +269,15 @@ window.onkeydown = function(event){
     posred()
   }
   if(event.keyCode === 54){
-    playercolor="blue"
+    playercolor="rgb(0,0,255)"
+    posred()
+  }
+  if(event.keyCode === 55){
+    var x=0;var y=0;var z=0;
+    x = (Math.random()*256).toFixed(0)
+    y = (Math.random()*256).toFixed(0)
+    z = (Math.random()*256).toFixed(0)
+    playercolor="rgb("+x+","+y+","+z+")"
     posred()
   }
   /*if(event.keyCode === 55){
