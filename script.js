@@ -103,12 +103,15 @@ function genmap3on(map,col1,col2){
     x = (Math.random()*1.7).toFixed(0)
     while(x>0){
       tempmap.push(col1)
+
       i++
       x--
     }
       tempmap.push(col2)
-      i++
-      tempmap.push(col2)
+      y = Math.random()
+      if(y<=0.2){
+        tempmap.push("green")
+      }else{tempmap.push(col2)}
       i++
     }
 
@@ -286,8 +289,12 @@ window.onkeydown = function(event){
     posred()
   }
   if(event.keyCode === 55){
+    if(scr>=15){
+      console.log(scr)
     playerskin="url(biden.png)"
     posred()
+    scr-=15
+    }
   }
   
   /*if(event.keyCode === 55){
