@@ -10,6 +10,9 @@ var arr = [
             document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
 ]
+var twumplocked = true;
+var bidenlocked = true;
+var sodalocked = true;
 var score = document.getElementById("score")
 var msg = document.getElementById("msg")
 score.innerHTML="Score:0"
@@ -282,20 +285,62 @@ window.onkeydown = function(event){
     posred()
   }
   if(event.keyCode === 53){
-    playerskin="url(soda.png)"
+   buysoda()
     posred()
   }
   if(event.keyCode === 54){
-    playerskin="url(trump.png)"
-    posred()
+  buytwump()
   }
   if(event.keyCode === 55){
-    if(scr>=15){
-      console.log(scr)
-    playerskin="url(biden.png)"
-    posred()
-    scr-=15
-    }
+ buybiden()
   }
   checkworldposition()
+}
+function buybiden(){
+  if(bidenlocked == false){
+    playerskin="url(biden.png)"
+    arr[position].style.backgroundImage = playerskin
+    arr[position].style.backgroundSize = "cover"  
+  }
+  else if(scr>=30){
+    console.log(scr)
+    scr-=30
+  calculatescore();
+  bidenlocked = false;
+  playerskin="url(biden.png)"
+  posred()  
+  document.getElementById("bidenbtn").innerHTML="equip (7)"
+  }
+}
+function buytwump(){
+  if(twumplocked == false){
+    playerskin="url(twump.png)"
+    arr[position].style.backgroundImage = playerskin
+    arr[position].style.backgroundSize = "cover"  
+  }
+  else if(scr>=20){
+    console.log(scr)
+    scr-=20
+  calculatescore();
+  twumplocked = false;
+  playerskin="url(twump.png)"
+  posred()  
+  document.getElementById("twumpbtn").innerHTML="equip (6)"
+  }
+}
+function buysoda(){
+  if(sodalocked == false){
+    playerskin="url(soda.png)"
+    arr[position].style.backgroundImage = playerskin
+    arr[position].style.backgroundSize = "cover"  
+  }
+  else if(scr>=10){
+    console.log(scr)
+    scr-=10
+  calculatescore();
+  sodalocked = false;
+  playerskin="url(soda.png)"
+  posred()  
+  document.getElementById("sodabtn").innerHTML="equip (5)"
+  }
 }

@@ -74,6 +74,12 @@ body {
 
 #shop {
   float: bottom;
-  width: auto;
+  width: 357px;
   height: auto;
+  background-color: none;
+}
+
+button {
+  width: 50px;
+  height: 20px;
 }/*# sourceMappingURL=style.css.map */
