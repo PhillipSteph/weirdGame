@@ -1,6 +1,10 @@
 body {
     background-color: #eeeeee;
 }
+#map{
+    width:auto;
+    height:auto;
+}
 
 #map div {
     height:50px;
@@ -12,8 +16,8 @@ body {
     float: left;
 }
 #map table {
-    height:100%;
-    width:100%;
+    height:auto;
+    width:auto;
 }
 #minimap div {
     height:25px;
@@ -23,18 +27,20 @@ body {
     background-color: grey;
 }
 #minimap {
+    width:auto;
+    height:auto;
     margin:auto;
     margin-left:5px;
     margin-bottom:20px;
+    
 }
 #text,#messagediv{
-    height:50px;
+    height:30px;
     width:150px;
     margin:auto;
     float:right;
     color:black;
     align-items: center;
-
 }
 #score,#msg{
     font-size:20px;
@@ -50,7 +56,15 @@ body {
 }
 #game{
     float:left;
+    width:100%;
+    height:auto;
+
 }
 .obamna{
     background-image: url(obamna.png)
+}
+#shop{
+    float:bottom;
+    width:auto;
+    height:auto;
 }

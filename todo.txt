@@ -1,4 +1,3 @@
-green disappears on worldchange
 story: obama, biden, trump playing minecraft or smth
 
 features:bomb, limited number, buyable

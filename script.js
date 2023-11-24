@@ -1,5 +1,6 @@
 var map = document.getElementById("map")
 var minimaptable = document.getElementById("minimaptable")
+var game = document.getElementById("game")
 var arr = [
             document.getElementById("0"),document.getElementById("1"),document.getElementById("2"),document.getElementById("3"),document.getElementById("4"),document.getElementById("5"), document.getElementById("6"),
             document.getElementById("7"),document.getElementById("8"),document.getElementById("9"),document.getElementById("10"),document.getElementById("11"),document.getElementById("12"), document.getElementById("13"),
@@ -296,26 +297,5 @@ window.onkeydown = function(event){
     scr-=15
     }
   }
-  
-  /*if(event.keyCode === 55){
-    var random1 = (Math.random()*255).toFixed
-    var random2 = (Math.random()*255).toFixed
-    var random3 = (Math.random()*255).toFixed
-    playercolor="rgb("+random1+","+random2+","+random3+")"
-    posred()
-  }*/
   checkworldposition()
 }
-/* function myLoop() {
-  setTimeout(function() { 
-
-    arr[i].style.backgroundColor="red"
-    console.log(i)  
-    i++;
-    if (i < 9) { 
-      myLoop(); 
-    } 
-  }, 1000)
-}
-
-myLoop(); */
