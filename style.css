@@ -48,7 +48,7 @@ body {
   align-items: center;
 }
 
-#score, #msg {
+#score, #msg, #bomb {
   font-size: 20px;
   height: auto;
   width: auto;

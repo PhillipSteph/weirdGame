@@ -15,6 +15,7 @@ var bidenlocked = true;
 var sodalocked = true;
 var score = document.getElementById("score")
 var msg = document.getElementById("msg")
+var bombtext = document.getElementById("bomb")
 score.innerHTML="Score:0"
 var colorarr = [[]]
 var blockcolor ="violet"
@@ -23,6 +24,8 @@ var worldsize=9;
 var position=24
 var tempmap = []
 var i = 0;
+var bombcount = 3;
+bombtext.innerHTML="bombs: "+bombcount
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
 var playerskin="url(obamna.png)"
@@ -141,7 +144,6 @@ function posred(){
   tempcol=colorarr[worldposition][position]
   arr[position].style.backgroundImage = playerskin
   arr[position].style.backgroundSize = "cover"  
-  console.log(tempcol)
 }
 function drawcolarr(){
   i=0
@@ -232,21 +234,18 @@ function goright(){
 }
 function move(){
 if(direction===87){
-  console.log("going up")
   goup()
 }
 if(direction===83){
-  console.log("going down")
   godown()
 }
 if(direction===65){
-  console.log("going left")
   goleft()
 }
 if(direction===68){
-  console.log("going right")
   goright()
 }
+
 }
 function checkworldposition(){
   var minimapblocks = document.getElementsByClassName("minimapblock")
@@ -265,8 +264,8 @@ function checkworldposition(){
 window.onkeydown = function(event){
   
   if(event.keyCode === 87 || event.keyCode === 83 || event.keyCode === 65 || event.keyCode === 68){
-  direction=event.keyCode
-  move()
+    direction=event.keyCode
+    move()
   }
   if(event.keyCode === 81){
     mapgenerator()
@@ -294,6 +293,12 @@ window.onkeydown = function(event){
   if(event.keyCode === 55){
  buybiden()
   }
+  if(event.keyCode === 56){
+    buybomb()
+     }
+     if(event.keyCode === 57){
+      usebomb()
+       }
   checkworldposition()
 }
 function buybiden(){
@@ -342,5 +347,27 @@ function buysoda(){
   playerskin="url(soda.png)"
   posred()  
   document.getElementById("sodabtn").innerHTML="equip (5)"
+  }
+}
+function buybomb(){
+
+  if(scr>=3){
+    bombcount+=1
+    bombtext.innerHTML="bombs: "+bombcount
+    scr-=3
+    score.innerHTML="Score:"+scr
+  }
+
+}
+function usebomb(){
+  if(bombcount>=1){
+  colorarr[worldposition][position+1]="black"//right
+  colorarr[worldposition][position-1]="black" //left
+  colorarr[worldposition][position+gridsize]="black"//down
+  colorarr[worldposition][position-gridsize]="black"//up
+  drawcolarr()
+  posred()
+  bombcount-=1
+  bombtext.innerHTML="bombs: "+bombcount
   }
 }
