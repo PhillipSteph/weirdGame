@@ -16,7 +16,7 @@ var sodalocked = true;
 var score = document.getElementById("score")
 var msg = document.getElementById("msg")
 var bombtext = document.getElementById("bomb")
-score.innerHTML="Score:0"
+score.innerHTML="Dollars:0"
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
@@ -65,15 +65,25 @@ function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
 var scr=0
 function calculatescore(){
 
-  score.innerHTML="Score:0"
+  score.innerHTML="Dollars:0"
   if(colorarr[worldposition][position]=="green"){
-    scr++
+    if(playerskin=="url(biden.png)"){
+      if(scr==0){scr=2}else{
+      scr=scr+scr}
+    }
+    else if(playerskin=="url(twump.png)"){
+      scr++
+      scr++
+    }else{
+      scr++
+    }
+    
     colorarr[worldposition][position]="black"
     drawcolarr()
     arr[position].backgroundImage=""
-    score.innerHTML="Score:"+scr
+    score.innerHTML="Dollars:"+scr
   }else{
-    score.innerHTML="Score:"+scr
+    score.innerHTML="Dollars:"+scr
     drawcolarr()
   }
   }
@@ -307,9 +317,9 @@ function buybiden(){
     arr[position].style.backgroundImage = playerskin
     arr[position].style.backgroundSize = "cover"  
   }
-  else if(scr>=30){
+  else if(scr>=50){
     console.log(scr)
-    scr-=30
+    scr-=50
   calculatescore();
   bidenlocked = false;
   playerskin="url(biden.png)"
@@ -355,14 +365,14 @@ function buybomb(){
     bombcount+=1
     bombtext.innerHTML="bombs: "+bombcount
     scr-=3
-    score.innerHTML="Score:"+scr
+    score.innerHTML="Dollars:"+scr
   }
 
 }
 function usebomb(){
   if(bombcount>=1){
-  colorarr[worldposition][position+1]="black"//right
-  colorarr[worldposition][position-1]="black" //left
+    if(position%gridsize!=6){colorarr[worldposition][position+1]="black"}
+    if(position%gridsize!=0){colorarr[worldposition][position-1]="black"}
   colorarr[worldposition][position+gridsize]="black"//down
   colorarr[worldposition][position-gridsize]="black"//up
   drawcolarr()
@@ -370,4 +380,15 @@ function usebomb(){
   bombcount-=1
   bombtext.innerHTML="bombs: "+bombcount
   }
+}
+function info(player){
+  var str
+  switch(player){
+    case 1: str="Der süße twump begleitet dich auf deiner Reise und sammelt UWU dir doppelte Dollar XOXO";break;
+    case 2:str="Biden ist ein ganz spezieller. Ein Präsident derzeit. Er bietet dir exponentielles Wachstum deines Geldes. Wahrer Kapitalist.";break;
+    case 3: str="nur ein soda skin. SODA!!";break;
+    case 4: str="Bomben sprengen die Wege um dich herum.Für 3 Dollar pro Stück preiswert.";break;
+    default:break;
+  }
+  alert(str)
 }
