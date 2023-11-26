@@ -53,9 +53,9 @@ j++
 }
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
-    case 1: genmapcoinson(map,col1,col2) ; break;
-    case 2: genmap2towerson(map,col1,col2) ; break;
-    case 3: genmaprandomon(map,col1,col2) ; break;
+    case 1: genmap1on(map,col1,col2) ; break;
+    case 2: genmap2on(map,col1,col2) ; break;
+    case 3: genmap3on(map,col1,col2) ; break;
   }
   if(worldposition==map){
     drawcolarr()
@@ -78,7 +78,7 @@ function calculatescore(){
   }
   }
 
-function genmapcoinson(map,col1,col2){
+function genmap1on(map,col1,col2){
   tempmap = []
   colorarr[map] = []
   i=0;
@@ -90,7 +90,7 @@ function genmapcoinson(map,col1,col2){
   }colorarr[map]=tempmap
   i=0
 }
-function genmap2towerson(map,col1,col2){
+function genmap2on(map,col1,col2){
   tempmap = []
   colorarr[map] = []
   i=0;
@@ -101,80 +101,8 @@ if(i<gridsize || i>=gridsize*gridsize-gridsize || i%gridsize==0 || i%gridsize==g
 i++
   }colorarr[map]=tempmap
 }
-function genmapleftrighton(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i<gridsize*2 || i>=gridsize*gridsize-gridsize*2){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
-function genmapupdownon(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i%gridsize<=1 || i%gridsize>=5){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
-function genmapleftdownon(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i<gridsize*2 || i%gridsize>=5 ||(i>=gridsize*gridsize-gridsize*2 && (i%gridsize!=2 && i%gridsize!=3 && i%gridsize!=4))){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
-function genmaprightdownon(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i<gridsize*2||i%gridsize<=1||(i%gridsize>=5)&&(i>=gridsize*gridsize-2*gridsize)){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
-function genmaprightupon(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i>gridsize*(gridsize-2)||i%gridsize<=1||(i%gridsize>=5)&&(i<gridsize*2)){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
-function genmapleftupon(map,col1,col2){
-  tempmap = []
-  colorarr[map] = []
-  for(i=0;i<gridsize*gridsize;i++){
-    if(i>=gridsize*(gridsize-2) || i%gridsize>=5 || (i<2*gridsize&& i%gridsize<=1) ){
-      tempmap.push(col2)
-    }else{tempmap.push(col1)}
-  }
-  colorarr[map]=tempmap
-  drawcolarr()
-  posred()
-}
 
-function genmaprandomon(map,col1,col2){
+function genmap3on(map,col1,col2){
   tempmap = []
   colorarr[map] = []
   i=0;
@@ -203,7 +131,7 @@ function mapgenerator(){
   }
   j=0
   while(j<worldsize*worldsize){
-    genmaprandomon(j,"violet","black")
+    genmap3on(j,"violet","black")
     j++
   }
 }
@@ -339,14 +267,17 @@ window.onkeydown = function(event){
     direction=event.keyCode
     move()
   }
+  if(event.keyCode === 81){
+    mapgenerator()
+  }
   if(event.keyCode === 49){
-    genmapleftrighton(worldposition,"black","violet")
+    custommapgenerator(worldposition,1,"black","green")
   }
   if(event.keyCode === 50){
-    genmapupdownon(worldposition,"black","violet")
+    custommapgenerator(worldposition,2,"black","violet")
   }
   if(event.keyCode === 51){
-    genmapleftupon(worldposition,"black","violet")
+    custommapgenerator(worldposition,3,"violet","black")
   }
   if(event.keyCode === 52){
     playerskin="url(obamna.png)"

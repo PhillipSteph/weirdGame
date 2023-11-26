@@ -1,1 +1,5 @@
 story: obama, biden, trump playing minecraft or smth
+
+features:bomb, limited number, buyable
+
+shop with skins, bombs
