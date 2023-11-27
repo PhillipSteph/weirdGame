@@ -10,6 +10,17 @@ var arr = [
             document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
             document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
 ]
+console.log(arr)
+var arr2 = []
+function createarrwithlengthof(length){
+  for(i=0;i<length*length;i++){
+    temp=0;
+    temp=document.getElementById(i.toString())
+    arr2.push(temp)
+  }
+}
+createarrwithlengthof(5)
+console.log(arr2)
 var twumplocked = true;
 var bidenlocked = true;
 var sodalocked = true;
