@@ -1,29 +1,16 @@
 var map = document.getElementById("map")
+var maptable = document.getElementById("maptable")
+
 var minimaptable = document.getElementById("minimaptable")
 var game = document.getElementById("game")
-var arr = [
-            document.getElementById("0"),document.getElementById("1"),document.getElementById("2"),document.getElementById("3"),document.getElementById("4"),document.getElementById("5"), document.getElementById("6"),
-            document.getElementById("7"),document.getElementById("8"),document.getElementById("9"),document.getElementById("10"),document.getElementById("11"),document.getElementById("12"), document.getElementById("13"),
-            document.getElementById("14"),document.getElementById("15"),document.getElementById("16"),document.getElementById("17"),document.getElementById("18"),document.getElementById("19"), document.getElementById("20"),
-            document.getElementById("21"),document.getElementById("22"),document.getElementById("23"),document.getElementById("24"),document.getElementById("25"), document.getElementById("26"), document.getElementById("27"),
-            document.getElementById("28"),document.getElementById("29"),document.getElementById("30"),document.getElementById("31"),document.getElementById("32"), document.getElementById("33"), document.getElementById("34"),        
-            document.getElementById("35"),document.getElementById("36"),document.getElementById("37"),document.getElementById("38"),document.getElementById("39"), document.getElementById("40"), document.getElementById("41"),
-            document.getElementById("42"),document.getElementById("43"),document.getElementById("44"),document.getElementById("45"),document.getElementById("46"), document.getElementById("47"), document.getElementById("48")
-]
-console.log(arr)
-var arr2 = []
-function createarrwithlengthof(length){
-  for(i=0;i<length*length;i++){
-    temp=0;
-    temp=document.getElementById(i.toString())
-    arr2.push(temp)
-  }
-}
-createarrwithlengthof(5)
-console.log(arr2)
+      gridsize=12
+var arr = []
+creategridmaphtml(gridsize)
+createarrwithlengthof(gridsize)
 var twumplocked = true;
 var bidenlocked = true;
 var sodalocked = true;
+var obamalocked=true
 var score = document.getElementById("score")
 var msg = document.getElementById("msg")
 var bombtext = document.getElementById("bomb")
@@ -39,13 +26,24 @@ var bombcount = 3;
 bombtext.innerHTML="bombs: "+bombcount
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
-var playerskin="url(obamna.png)"
+var playerskin
+buyobama()
 createminimaphtml()
 mapgenerator()
 colorarr[worldposition][position]="black"
 drawcolarr()
 posred()
 checkworldposition()
+
+
+
+function createarrwithlengthof(length){
+  for(i=0;i<length*length;i++){
+    temp=0;
+    temp=document.getElementById(i.toString())
+    arr.push(temp)
+  }
+}
 function createminimaphtml(){
   a=0;
   j=0;k=0;
@@ -61,6 +59,22 @@ var string=""
 j++
   }
   minimaptable.innerHTML+=string
+}
+function creategridmaphtml(length){
+  a=0;
+  j=0;k=0;
+var string=""
+  while(j<length){
+    a+=length
+    string += "<tr>"
+      while(k<a){
+        string+= "<th><div id='"+k+"'></div></th>"
+        k++
+      }
+    string+="</tr>"
+j++
+  }
+  maptable.innerHTML=string
 }
 function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
   switch(type){
@@ -201,9 +215,9 @@ function godown(){
     return;
   }
   else if((gridsize*gridsize-gridsize)<=position){
-    if(colorarr[worldposition+worldsize][position%7]==blockcolor){msg.innerHTML="versperrt";return;}
+    if(colorarr[worldposition+worldsize][position%gridsize]==blockcolor){msg.innerHTML="versperrt";return;}
     worldposition=worldposition+worldsize
-    position=position%7
+    position=position%gridsize
     calculatescore()
     posred()
     return;
@@ -353,6 +367,13 @@ function buytwump(){
   posred()  
   document.getElementById("twumpbtn").innerHTML="equip (6)"
   }
+}
+
+function buyobama(){
+
+  playerskin="url(obamna.png)"
+  posred()  
+  
 }
 function buysoda(){
   if(sodalocked == false){
