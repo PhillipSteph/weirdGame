@@ -75,7 +75,7 @@ body {
 }
 #controlltable{
     position:absolute;
-    left:-100px;
+    left:-200px;
 }
 .info{
     background-color: #AA0000;
@@ -85,6 +85,10 @@ body {
     width:20px;
     height:20px;
     border-radius:3px;
+}
+#usebombbtn{
+    position: absolute;
+    left:-100px
 }
 @media (max-aspect-ratio:16/16){
     #usebombbtn{
