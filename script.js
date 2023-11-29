@@ -1,12 +1,13 @@
 var map = document.getElementById("map")
 var maptable = document.getElementById("maptable")
-
+var paintbutton = document.getElementById("paintbutton")
 var minimaptable = document.getElementById("minimaptable")
 var game = document.getElementById("game")
       gridsize=12
 var arr = []
 creategridmaphtml(gridsize)
 createarrwithlengthof(gridsize)
+var paintingmode = false;
 var twumplocked = true;
 var bidenlocked = true;
 var sodalocked = true;
@@ -27,6 +28,7 @@ bombtext.innerHTML="bombs: "+bombcount
 var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
 var playerskin
+var paintcolor = "black"
 buyobama()
 createminimaphtml()
 mapgenerator()
@@ -35,8 +37,23 @@ drawcolarr()
 posred()
 checkworldposition()
 
+function paintmode(){
 
+  switch(paintingmode){
+    case true: paintbutton.innerHTML="Paintmode: Off"; paintingmode=false;break;  
+    case false: paintbutton.innerHTML="Paintmode: On"; paintingmode=true;break;
+    default:break;
+  }
 
+}
+function changecolor(color){
+  switch(color){
+    case 0: paintcolor="black";break;
+    case 1: paintcolor="violet";break;
+    case 2: paintcolor="green";break;
+    default:break;
+  }
+}
 function createarrwithlengthof(length){
   for(i=0;i<length*length;i++){
     temp=0;
@@ -68,7 +85,7 @@ var string=""
     a+=length
     string += "<tr>"
       while(k<a){
-        string+= "<th><div id='"+k+"'></div></th>"
+        string+= "<th><div  onclick='paint("+k+")' id='"+k+"'></div></th>"
         k++
       }
     string+="</tr>"
@@ -87,6 +104,15 @@ function custommapgenerator(map,type,col1,col2){ //map 0-3; type 1-3
     posred()
   }
 }
+
+function paint(currentdiv){
+  if(paintingmode == true){
+  colorarr[worldposition][currentdiv]=paintcolor
+  drawcolarr()
+  posred()
+  }
+}
+
 var scr=0
 function calculatescore(){
 

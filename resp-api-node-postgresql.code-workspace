@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../resp-api-node-postgresql"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pr1"
+	}
+}

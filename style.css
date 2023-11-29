@@ -7,6 +7,24 @@ body {
   height: auto;
 }
 
+#blackbtn {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+}
+
+#violetbtn {
+  width: 40px;
+  height: 40px;
+  background-color: violet;
+}
+
+#greenbtn {
+  width: 40px;
+  height: 40px;
+  background-color: green;
+}
+
 #map div {
   height: 47px;
   width: 47px;
