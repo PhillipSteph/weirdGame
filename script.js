@@ -3,7 +3,7 @@ var maptable = document.getElementById("maptable")
 var paintbutton = document.getElementById("paintbutton")
 var minimaptable = document.getElementById("minimaptable")
 var game = document.getElementById("game")
-      gridsize=12
+      gridsize=5
 var arr = []
 creategridmaphtml(gridsize)
 createarrwithlengthof(gridsize)
@@ -19,7 +19,7 @@ score.innerHTML="Dollars:0"
 var colorarr = [[]]
 var blockcolor ="violet"
 var worldposition=0; 
-var worldsize=9;
+var worldsize=5;
 var position=24
 var tempmap = []
 var i = 0;
