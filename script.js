@@ -29,6 +29,7 @@ var gridsize=Math.sqrt(arr.length)
 var tempcol=colorarr[0][0]
 var playerskin
 var paintcolor = "black"
+paintlocked=true
 buyobama()
 createminimaphtml()
 mapgenerator()
@@ -39,11 +40,22 @@ checkworldposition()
 
 function paintmode(){
 
-  switch(paintingmode){
-    case true: paintbutton.innerHTML="Paintmode: Off"; paintingmode=false;break;  
-    case false: paintbutton.innerHTML="Paintmode: On"; paintingmode=true;break;
-    default:break;
-  }
+  if(paintlocked==true){
+    if(scr<10000){return;}
+    scr-=10000;
+    calculatescore()
+    posred()
+    paintlocked=false
+    paintbutton.innerHTML="Paintmode: On"; paintingmode=true;
+  }else{
+    switch(paintingmode){
+      case true: paintbutton.innerHTML="Paintmode: Off"; paintingmode=false;break;  
+      case false: paintbutton.innerHTML="Paintmode: On"; paintingmode=true;break;
+      default:break;
+    }
+    return;
+  posred()}
+
 
 }
 function changecolor(color){

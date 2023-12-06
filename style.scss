@@ -52,6 +52,7 @@ body {
     height:30px;
     width:150px;
     margin:auto;
+    margin-top:10px;
     float:right;
     color:black;
     align-items: center;
@@ -102,7 +103,7 @@ body {
 }
 #usebombbtn{
     position: absolute;
-    left:-100px
+    right:-100px
 }
 @media (max-aspect-ratio:16/16){
     #usebombbtn{
