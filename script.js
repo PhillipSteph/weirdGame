@@ -139,6 +139,8 @@ function calculatescore() {
     else if (playerskin == "url(twump.png)") {
       scr++
       scr++
+    }else if (playerskin == "url(blob.png)") {
+      scr--
     } else {
       scr++
     }
@@ -417,7 +419,7 @@ function buyobama() {
 }
 function buysoda() {
   if (sodalocked == false) {
-    playerskin = "url(soda.png)"
+    playerskin = "url(blob.png)"
     arr[position].style.backgroundImage = playerskin
     arr[position].style.backgroundSize = "cover"
   }
@@ -426,7 +428,7 @@ function buysoda() {
     scr -= 10
     calculatescore();
     sodalocked = false;
-    playerskin = "url(soda.png)"
+    playerskin = "url(blob.png)"
     posred()
     document.getElementById("sodabtn").innerHTML = "equip (5)"
   }
@@ -458,7 +460,7 @@ function info(player) {
   switch (player) {
     case 1: str = "Der süße twump begleitet dich auf deiner Reise und sammelt UWU dir doppelte Dollar XOXO"; break;
     case 2: str = "Biden ist ein ganz spezieller. Ein Präsident derzeit. Er bietet dir exponentielles Wachstum deines Geldes. Wahrer Kapitalist."; break;
-    case 3: str = "nur ein soda skin. SODA!!"; break;
+    case 3: str = "blob"; break;
     case 4: str = "Bomben sprengen die Wege um dich herum.Für 3 Dollar pro Stück preiswert."; break;
     default: break;
   }
